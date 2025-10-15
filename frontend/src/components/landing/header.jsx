@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Allinvoices() {
+const Header = () => {
   return (
     <div>
-      all
+      header
     </div>
   )
 }
 
-export default Allinvoices
+export default Header
