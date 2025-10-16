@@ -1,7 +1,6 @@
 import { Navigate , Outlet } from "react-router-dom"
 import Dashboardlayout from "../layout/dashboardlayout"
 const Protectedroute = ({children }) => {
-    //
     const isAuthenticated = true 
     const loading = false 
 

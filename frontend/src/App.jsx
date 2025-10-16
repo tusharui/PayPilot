@@ -32,7 +32,7 @@ const App = () => {
           {/* protected routes  */}
 
           <Route path="/" element={<Protectedroute />}>
-            <Route path="dashboard" element={<  Dashboard />} />
+            <Route path="dashboard" element={<Dashboard/>} />
             <Route path="/invoices" element={< Allinvoices />} />
             <Route path="invoices/new" element={<Createinvoice />} />
             <Route path="invoices/:id" element={<Invoicedetails />} />
