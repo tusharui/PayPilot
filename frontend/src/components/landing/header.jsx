@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FileText } from "lucide-react";
+import { FileText, Menu, X } from "lucide-react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const isAuthenticated = false;
   const user = { name: 'Alex', email: 'alex12@gmail.com' };
@@ -37,7 +38,7 @@ const Header = () => {
           </div>
 
           {/* Center Navigation Links */}
-          <div className="flex-1 flex justify-center space-x-8 hidden lg:flex">
+          <div className="hidden lg:flex flex-1 justify-center space-x-8">
             <a
               href="#feature"
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
@@ -97,10 +98,62 @@ const Header = () => {
             )}
           </div>
 
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6 text-gray-900" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-900" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden bg-white/95 backdrop-blur-sm shadow-lg">
+          <div className="px-4 py-4 space-y-2">
+            <a href="#feature" className="block text-gray-600 hover:text-gray-900">
+              Features
+            </a>
+            <a href="#testimonials" className="block text-gray-600 hover:text-gray-900">
+              Testimonials
+            </a>
+            <a href="#faq" className="block text-gray-600 hover:text-gray-900">
+              FAQ
+            </a>
+            {!isAuthenticated ? (
+              <>
+                <Link to="/login" className="block text-gray-600 hover:text-gray-900">
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="block px-4 py-2 rounded-md text-white bg-gradient-to-r from-blue-950 to-blue-900 hover:opacity-90 transition-opacity duration-200"
+                >
+                  Signup
+                </Link>
+              </>
+            ) : (
+              <button
+                onClick={logout}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                Logout
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 };
 
-export default Header;
+export default Header;  
+
+
